@@ -1,1 +1,1 @@
-C:\Users\elija\Documents\GitHub\bubsyCLI\target\debug\bubsyCLI.exe: C:\Users\elija\Documents\GitHub\bubsyCLI\src\main.rs
+D:\Rust\bubsyCLI\target\debug\bubsyCLI.exe: D:\Rust\bubsyCLI\src\main.rs

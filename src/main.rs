@@ -1,13 +1,18 @@
 
 use std::io::{self, BufReader, BufRead};
 use std::fs::File;
+use std::thread;
+use std::time::Duration;
+use std::path::Path;
 fn main() {
     let quotes:Vec<String> = Vec::new();
-    let f = File::open("C:\\Users\\elija\\Documents\\GitHub\\bubsyCLI\\src\\bubsy.html").expect("File failed to open");
+    //let path = Path::new("\\logo.txt");
+    let f = File::open("logo.txt").expect("File failed to open");
     let mut reader = BufReader::new(f);
     let line = String::new();
+    let lines = reader.lines();
 
-    let mut lines = reader.lines();
+
     
     for l in lines {
        match l {
@@ -15,11 +20,7 @@ fn main() {
         Err(e) => println!("ERROR")
        }
     }
+    thread::sleep(Duration::from_millis(5000));
     println!("done");
 }
-/**
- * Parses quotes from raw HTMl provided in resources
- */
-fn parse(lines: Option<self>) {
-    
-}
+
