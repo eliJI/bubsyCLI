@@ -1,20 +1,24 @@
 
-use std::io::{BufReader, BufRead};
+use std::io::{BufReader , BufRead, stdout};
 use std::fs::File;
 use std::thread;
 use std::time::Duration;
-use std::path::Path;
 use rand::Rng;
-fn main() {
+use crossterm::{self, execute,cursor};
+fn main() -> Result<(), std::io::Error> {
     let logo = process(String::from("logo.txt"));
     let quotes = process(String::from("bubsy.txt"));
-
+    let mut stdout = stdout();
+    let size = crossterm::terminal::size()?;
+    let x = size.0/2;
     display(logo);
-    randomQuote(&quotes);
-    randomQuote(&quotes);
+    execute!(stdout, cursor::MoveRight(x-30))?;
+    println!("{}",randomQuote(&quotes));
+    
 
     thread::sleep(Duration::from_millis(5000));
     println!("done");
+    Ok(())
 }
 /**
  * Exstrats lines from a text file, returning a vector of lines
@@ -44,10 +48,10 @@ fn display(lines: Vec<String>) {
 /**
  * Generates a random quote given a reference to a vector of strings
  */
-fn randomQuote(quotes: &Vec<String>) {
+fn randomQuote(quotes: &Vec<String>) -> String {
     let mut rng = rand::thread_rng();
     let num = rng.gen_range(0..quotes.len());
-    println!("{}",quotes[num]);
+    String::from(&quotes[num])    
 }
 
 
